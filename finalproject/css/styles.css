@@ -1,0 +1,237 @@
+/* General Reset */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* Home Section */
+#home {
+    position: relative;
+    height: 100vh;
+}
+
+#bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.content {
+    z-index: 2;
+}
+
+/* Default: Members are arranged in a horizontal row */
+.member-list {
+    display: flex;
+    flex-wrap: wrap; /*  Allows wrapping when needed */
+    justify-content: center;
+    gap: 30px;
+    transition: all 0.3s ease-in-out;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    overflow-x: auto; /* Keeps horizontal scrolling */
+    padding: 10px; /* Prevents cutting off the first item */
+}
+
+/* When toggled, members rearrange vertically */
+.member-list.vertical-layout {
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Member container: Holds image & details */
+.member-item {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Space between image and details */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* When a member is active, switch layout */
+.member-item.active {
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+/* Member Picture Styling (Larger Size) */
+.member-box {
+    position: relative;
+    width: 220px; /* Bigger image */
+    height: 220px;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+}
+
+.member-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Overlay Effect for Name & Student ID (Covers the Entire Image) */
+.member-box .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Covers the whole picture */
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Show overlay when hovering over the entire picture */
+.member-box:hover .overlay {
+    opacity: 1;
+}
+
+/* Member details (hidden by default) */
+.member-details {
+    display: none;
+    width: 60%;
+    max-width: 600px;
+    text-align: left;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid #007bff;
+}
+
+/* When a member is selected, show details beside */
+.member-item.active .member-details {
+    display: flex;
+}
+
+/* Thin Line Separator */
+.detail-divider {
+    width: 3px;
+    height: 100%;
+    background-color: #007bff;
+    margin-right: 15px;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    text-align: center;
+}
+
+.close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Our Mission Section */
+#our-mission {
+    background: linear-gradient(to bottom, #f8f9fa, #e9ecef); /* Subtle gradient background */
+    padding: 60px 0;
+}
+
+.mission-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.mission-item.reverse {
+    flex-direction: row-reverse;
+}
+
+/* Mission Text */
+.mission-text {
+    flex: 1;
+    padding: 20px;
+    background: #ffffff;
+    border-left: 4px solid #007bff; /* Decorative left border */
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.mission-text h3 {
+    margin-top: 0;
+    color: #007bff;
+    font-size: 22px;
+}
+
+.mission-text p {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Mission Image */
+.mission-image {
+    flex: 1;
+    text-align: center;
+}
+
+.mission-image img {
+    width: 80%; /* Reduce image size while keeping it responsive */
+    max-width: 350px; /*  Limits the max size */
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .mission-item {
+        display: flex;
+        flex-direction: column; /* Stack items vertically */
+        text-align: center;
+    }
+
+    /* Ensure description always appears above the image */
+    .mission-item .mission-text {
+        order: -1; /* Forces text to always appear first */
+        text-align: center;
+    }
+
+    .mission-image {
+        order: 1; /* Forces image to always appear second */
+    }
+}
